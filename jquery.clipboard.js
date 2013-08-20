@@ -22,17 +22,19 @@
                 copy: null,
                 beforeCopy: null,
                 afterCopy: null,
-                clickAfter: true,
-                setHandCursor: true,
-                setCSSEffects: true
+                clickAfter: true
             }, params);
             
             return this.each(function () {
                 var o = $(this);
 
                 if (o.is(':visible') && (typeof settings.copy == 'string' || $.isFunction(settings.copy))) {
-                    ZeroClipboard.setMoviePath(settings.path);
-                    var clip = new ZeroClipboard.Client();
+                    var clip = new ZeroClipboard($(this), {
+                      moviePath: settings.path,
+                      trustedDomains: '*',
+                      hoverClass: 'hover',
+                      activeClass: 'active'
+                    });
                     
                     if ($.isFunction(settings.copy)) {
                         o.bind('Clipboard_copy',settings.copy);
@@ -44,8 +46,6 @@
                         o.bind('Clipboard_afterCopy',settings.afterCopy);
                     }                    
 
-                    clip.setHandCursor(settings.setHandCursor);
-                    clip.setCSSEffects(settings.setCSSEffects);
                     clip.addEventListener('mouseOver', function (client) {
                         o.trigger('mouseenter');
                     });
@@ -83,8 +83,6 @@
                     });
 
                     clip.glue(o[0], o.parent()[0]);
-                    
-                    $(window).bind('load resize',function(){clip.reposition();});
                 }
             });
         } else if (typeof params == 'string') {
