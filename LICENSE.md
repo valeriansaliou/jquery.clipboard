@@ -2,6 +2,7 @@ The MIT License (MIT)
 =====================
 
 **Copyright (c) 2013 Valérian Saliou**
+
 **Copyright (c) 2011 SteamDev**
 
 
