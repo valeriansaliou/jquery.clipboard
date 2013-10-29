@@ -13,14 +13,34 @@ jQuery Clipboard plugin: copy any text to the user's clipboard. Implements ZeroC
 <script type="text/javascript" src="/path/to/javascripts/jquery.clipboard.js"></script>
 ```
 
+**Important: please check that you are using at least jQuery 1.7 - jQuery Clipboard won't work with versions below!**
+
 
 ### 2. Apply On An Element
 
 ```javascript
-$(document).ready(function(){
-    $('.code-block a.code-copy').clipboard({
+$(document).ready(function() {
+    var copy_sel = $('.code-block a.code-copy');
+
+    // Disables other default handlers on click (avoid issues)
+    copy_sel.on('click', function(e) {
+        e.preventDefault();
+    });
+
+    // Apply clipboard click event
+    copy_sel.clipboard({
         path: '/path/to/flashes/jquery.clipboard.swf',
-        copy: $(this).parents('.code-block').find('.code-lines').text()
+
+        copy: function() {
+            var this_sel = $(this);
+
+            // Hide "Copy" and show "Copied, copy again?" message in link
+            this_sel.find('.code-copy-first').hide();
+            this_sel.find('.code-copy-done').show();
+
+            // Return text in closest element (useful when you have multiple boxes that can be copied)
+            return this_sel.closest('.code-block').text();
+        }
     });
 });
 ```

@@ -10,101 +10,89 @@
  * Released under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
+ * Version: v1.1
  * Date: Tue Oct 29, 2013
  */
 
 /* Component: jQuery Clipboard */
 (function ($) {
-    $.fn.clipboard = function (params) {
-        if (typeof params == 'object' && !params.length) {
-            var settings = $.extend({
-                path: 'jquery.clipboard.swf',
-                copy: null,
-                beforeCopy: null,
-                afterCopy: null,
-                clickAfter: true
-            }, params);
-            
-            return this.each(function () {
-                var o = $(this);
+  var $clip = null;
+  var $is_loaded = false;
 
-                if (o.is(':visible') && (typeof settings.copy == 'string' || $.isFunction(settings.copy))) {
-                    var clip = new ZeroClipboard($(this), {
-                      moviePath: settings.path,
-                      trustedDomains: '*',
-                      hoverClass: 'hover',
-                      activeClass: 'active'
-                    });
-                    
-                    if ($.isFunction(settings.copy)) {
-                        o.bind('Clipboard_copy',settings.copy);
-                    }
-                    if ($.isFunction(settings.beforeCopy)) {
-                        o.bind('Clipboard_beforeCopy',settings.beforeCopy);
-                    }
-                    if ($.isFunction(settings.afterCopy)) {
-                        o.bind('Clipboard_afterCopy',settings.afterCopy);
-                    }                    
+  $.fn.clipboard = function (params) {
+    if ((typeof params == 'object' && !params.length) || (typeof params == 'undefined')) {
+      var settings = $.extend({
+        path: 'jquery.clipboard.swf',
+        copy: null,
+        beforeCopy: null,
+        afterCopy: null,
+        clickAfter: true
+      }, (params || {}));
+      
+      return this.each(function () {
+        var o = $(this);
 
-                    clip.addEventListener('mouseOver', function (client) {
-                        o.trigger('mouseenter');
-                    });
-                    clip.addEventListener('mouseOut', function (client) {
-                        o.trigger('mouseleave');
-                    });
-                    clip.addEventListener('mouseDown', function (client) {
-                        o.trigger('mousedown');
-                        
-                        if (!$.isFunction(settings.copy)) {
-                           clip.setText(settings.copy);
-                        } else {
-                           clip.setText(o.triggerHandler('Clipboard_copy'));
-                        }                        
-                        
-                        if ($.isFunction(settings.beforeCopy)) {
-                            o.trigger('Clipboard_beforeCopy');                            
-                        }
-                    });
+        if (o.is(':visible') && (typeof settings.copy == 'string' || $.isFunction(settings.copy))) {
+          if ($.isFunction(settings.copy)) {
+            o.bind('Clipboard_copy',settings.copy);
+          }
+          if ($.isFunction(settings.beforeCopy)) {
+            o.bind('Clipboard_beforeCopy',settings.beforeCopy);
+          }
+          if ($.isFunction(settings.afterCopy)) {
+            o.bind('Clipboard_afterCopy',settings.afterCopy);
+          }
 
-                    clip.addEventListener('complete', function (client, text) {
-                        if ($.isFunction(settings.afterCopy)) {
-                            o.trigger('Clipboard_afterCopy');
-                        } else {
-                            if (text.length > 500) {
-                                text = text.substr(0, 500) + '...\n\n(' + (text.length - 500) + ' characters not shown)';
-                            }
-                            
-                            o.removeClass('hover');
-                        }
-
-                        if (settings.clickAfter) {
-                            o.trigger('click');
-                        }
-                    });
-
-                    clip.glue(o[0], o.parent()[0]);
-                }
+          if($clip === null) {
+            $clip = new ZeroClipboard(null, {
+              moviePath: settings.path,
+              trustedDomains: '*',
+              hoverClass: 'hover',
+              activeClass: 'active'
             });
-        } else if (typeof params == 'string') {
-            return this.each(function () {
-                var o = $(this);
 
-                params = params.toLowerCase();
-                var clipboardId = o.data('clipboardId');
-                var clipElm = $('#' + clipboardId + '.clipboard');
+            $clip.on('load', function(client) {
+              client.on('mouseover', function (client) {
+                $(this).trigger('mouseenter');
+              });
+              
+              client.on('mouseout', function (client) {
+                $(this).trigger('mouseleave');
+              });
 
-                if (params == 'remove') {
-                    clipElm.remove();
-                    o.removeClass('active hover');
-                } else if (params == 'hide') {
-                    clipElm.hide();
-                    o.removeClass('active hover');
-                } else if (params == 'show') {
-                    clipElm.show();
+              client.on('mousedown', function (client) {
+                $(this).trigger('mousedown');
+                
+                if (!$.isFunction(settings.copy)) {
+                   client.setText(settings.copy);
+                } else {
+                   client.setText($(this).triggerHandler('Clipboard_copy'));
+                }                        
+                
+                if ($.isFunction(settings.beforeCopy)) {
+                    $(this).trigger('Clipboard_beforeCopy');                            
                 }
+              });
+
+              client.on('complete', function (client, args) {
+                if ($.isFunction(settings.afterCopy)) {
+                  $(this).trigger('Clipboard_afterCopy');
+                } else {
+                  $(this).removeClass('hover');
+                }
+
+                if (settings.clickAfter) {
+                  $(this).trigger('click');
+                }
+              });
             });
+          }
+
+          $clip.glue(o[0]);
         }
-    }   
+      });
+    }
+  }
 })(jQuery);
 
 /* Component: ZeroClipboard */
