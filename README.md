@@ -49,5 +49,6 @@ $(document).ready(function() {
 ### 3. More Docs
 
 More docs can be found on http://www.steamdev.com/zclip/
+I wrote a tutorial about jQuery Clipboard at https://waaave.com/tutorial/jquery/copy-text-to-clipboard-using-jquery/
 
 jQuery Clipboard is mostly based on jQuery.zClip, the plugin APIs remain barely the same.
