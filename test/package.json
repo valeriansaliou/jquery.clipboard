@@ -1,0 +1,31 @@
+{
+  "name": "jquery-clipboard",
+  "description": "jQuery Clipboard test tools",
+  "version": "1.0.0",
+  "homepage": "https://github.com/valeriansaliou/jquery.clipboard",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valeriansaliou/jquery.clipboard"
+  },
+
+  "author": {
+    "name": "Valérian Saliou",
+    "url": "https://valeriansaliou.name/"
+  },
+
+  "main": "Gruntfile.js",
+
+  "engines": {
+    "node": ">=0.8.0"
+  },
+
+  "scripts": {
+    "test": "npm install; grunt test"
+  },
+
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-contrib-jshint": "0.6.4"
+  }
+}
