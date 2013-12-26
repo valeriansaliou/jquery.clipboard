@@ -92,7 +92,7 @@
         }
       });
     }
-  }
+  };
 })(jQuery);
 
 /* Component: ZeroClipboard */
