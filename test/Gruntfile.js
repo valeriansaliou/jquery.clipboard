@@ -29,11 +29,11 @@ module.exports = function(grunt) {
   // Map tasks
   var GRUNT_TASKS_TEST = {
     all: [['lint',0]]
-  }
+  };
 
   var GRUNT_TASKS_LINT = {
     js: [['jshint',0]]
-  }
+  };
 
 
   // Register tasks
