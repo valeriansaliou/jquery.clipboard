@@ -425,7 +425,7 @@
   var _extend = function() {
     var i, len, arg, prop, src, copy, target = arguments[0] || {};
     for (i = 1, len = arguments.length; i < len; i++) {
-      if ((arg = arguments[i]) != null) {
+      if ((arg = arguments[i]) !== null) {
         for (prop in arg) {
           if (arg.hasOwnProperty(prop)) {
             src = target[prop];
@@ -462,7 +462,7 @@
   var _determineScriptAccess = function() {
     var _extractAllDomains = function(origins, resultsArray) {
       var i, len, tmp;
-      if (origins != null && resultsArray[0] !== "*") {
+      if (origins !== null && resultsArray[0] !== "*") {
         if (typeof origins === "string") {
           origins = [ origins ];
         }
