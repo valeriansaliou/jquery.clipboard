@@ -142,7 +142,7 @@
           }
           tmpJsPath = tmpJsPath.split("#")[0].split("?")[0];
           tmpJsPath = tmpJsPath.slice(0, tmpJsPath.lastIndexOf("/") + 1);
-          if (jsDir == null) {
+          if (jsDir === null) {
             jsDir = tmpJsPath;
           } else if (jsDir !== tmpJsPath) {
             jsDir = null;
@@ -317,7 +317,7 @@
     return info;
   };
   var _cacheBust = function(path, options) {
-    var cacheBust = options == null || options && options.cacheBust === true && options.useNoCache === true;
+    var cacheBust = options === null || options && options.cacheBust === true && options.useNoCache === true;
     if (cacheBust) {
       return (path.indexOf("?") === -1 ? "?" : "&") + "noCache=" + new Date().getTime();
     } else {
@@ -443,7 +443,7 @@
     return target;
   };
   var _extractDomain = function(originOrUrl) {
-    if (originOrUrl == null || originOrUrl === "") {
+    if (originOrUrl === null || originOrUrl === "") {
       return null;
     }
     originOrUrl = originOrUrl.replace(/^\s+|\s+$/g, "");
@@ -518,7 +518,7 @@
     };
   }();
   var _objectKeys = function(obj) {
-    if (obj == null) {
+    if (obj === null) {
       return [];
     }
     if (Object.keys) {
