@@ -44,12 +44,14 @@
           }
 
           if($clip === null) {
-            $clip = new ZeroClipboard(null, {
+            ZeroClipboard.config({
               moviePath: settings.path,
               trustedDomains: '*',
               hoverClass: 'hover',
               activeClass: 'active'
             });
+
+            $clip = new ZeroClipboard(null);
 
             $clip.on('load', function(client) {
               client.on('mouseover', function (client) {
@@ -88,7 +90,7 @@
             });
           }
 
-          $clip.glue(o[0]);
+          $clip.clip([o[0]]);
         }
       });
     }
