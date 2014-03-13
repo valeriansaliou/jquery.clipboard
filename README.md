@@ -10,7 +10,7 @@ jQuery Clipboard plugin: copy any text to the user's clipboard. Implements ZeroC
 
 ### 1. Before You Start
 
-- Due to Flash restrictions, **jQuery Clipboard cannot be used on local domains** (localhost, .dev), you need to serve it from a genuine domain (.com, .net or so)
+- Due to Flash restrictions, **jQuery Clipboard cannot be used on local domains** (localhost, .dev), you need to serve it from a genuine Internet domain (.com, .net or so)
 - Please check that **you are using at least jQuery 1.7** - jQuery Clipboard won't work with versions below!
 
 
