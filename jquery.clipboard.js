@@ -10,8 +10,8 @@
  * Released under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
- * Version: v1.3
- * Date: Sat Mar 1, 2014
+ * Version: v1.4
+ * Date: Fri Oct 3, 2014
  */
 
 /* Component: jQuery Clipboard */
@@ -28,7 +28,7 @@
         afterCopy: null,
         clickAfter: true
       }, (params || {}));
-      
+
       return this.each(function () {
         var o = $(this);
 
@@ -57,22 +57,22 @@
               client.on('mouseover', function (client) {
                 $(this).trigger('mouseenter');
               });
-              
+
               client.on('mouseout', function (client) {
                 $(this).trigger('mouseleave');
               });
 
               client.on('mousedown', function (client) {
                 $(this).trigger('mousedown');
-                
+
                 if (!$.isFunction(settings.copy)) {
                    client.setText(settings.copy);
                 } else {
                    client.setText($(this).triggerHandler('Clipboard_copy'));
-                }                        
-                
+                }
+
                 if ($.isFunction(settings.beforeCopy)) {
-                    $(this).trigger('Clipboard_beforeCopy');                            
+                    $(this).trigger('Clipboard_beforeCopy');
                 }
               });
 
