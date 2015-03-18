@@ -1,6 +1,6 @@
 /*
  * jQuery Clipboard
- * Test tasks (uses GruntJS)
+ * Tasks (uses GruntJS)
  *
  * Copyright 2013, FrenchTouch Web Agency
  * Author: Valérian Saliou <valerian@valeriansaliou.name>
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
     // Task: JSHint
     jshint: {
-      files: ['../jquery.clipboard.js']
+      files: ['jquery.clipboard.js']
     }
   });
 
