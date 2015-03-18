@@ -5,7 +5,7 @@ jQuery Clipboard
 
 jQuery Clipboard plugin: copy any text to the user's clipboard. Implements ZeroClipboard over the jQuery plugin layer.
 
-[![build status](https://ci.hakuma.holdings/projects/10/status.png?ref=master)](https://ci.hakuma.holdings/projects/10?ref=master)
+[![Build Status](https://semaphoreci.com/api/v1/projects/78060ee0-5ca7-40fa-bec1-5490c2d384e8/376007/shields_badge.svg)](https://semaphoreci.com/valeriansaliou/jquery-clipboard)
 
 
 ## Usage
