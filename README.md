@@ -1,11 +1,9 @@
 jQuery Clipboard
 ================
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/valeriansaliou/jquery.clipboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/valeriansaliou/jquery.clipboard.svg?branch=master)](https://travis-ci.org/valeriansaliou/jquery.clipboard) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/valeriansaliou/jquery.clipboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 jQuery Clipboard plugin: copy any text to the user's clipboard. Implements ZeroClipboard over the jQuery plugin layer.
-
-[![Build Status](https://travis-ci.org/valeriansaliou/jquery.clipboard.svg?branch=master)](https://travis-ci.org/valeriansaliou/jquery.clipboard)
 
 
 ## Usage
